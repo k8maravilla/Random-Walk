@@ -17,11 +17,17 @@ def Reg():
     return random.choice([(1,0), (-1, 0)])
 
 def my_trials(length, name):
+    """gives endpoint for one trial"""
+    my_dict = {
+        "Pa": Pa,
+        "Mi-Ma":Mi_Ma,
+        "Reg":Reg
+    }
     x = 0
     y = 0
 
     for _ in range(length):
-        x_coord, y_coord = name
+        x_coord, y_coord = my_dict[name]()
         x += x_coord
         y += y_coord
     return (x, y)
@@ -38,6 +44,10 @@ def simulate(walk_lengths, trials, walkers):
     else:
         all_walkers.append(walkers)
 
+    for walker in all_walkers:
+        for i in walk_lengths:
+            
+
     
 
         
@@ -47,7 +57,7 @@ def plot():
 
 def main():
     #simulate()
-    print(my_trials(100, Pa()))
+    print(walks(100, 50, "Pa"))
 
 main()
 #if __name__ == "__main__":
