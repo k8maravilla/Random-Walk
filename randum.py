@@ -60,7 +60,16 @@ def find_max(distances):
 def find_min(distances):
     """finds the minimum distance in the list of distances"""
     min_distance = min(distances)
-    print(round(min_distance, 1))
+    rounded_min = round(min_distance, 1)
+    return rounded_min
+
+def find_coeffiecent_variance(distances):
+    """takes a list of distances, finds the standard devation, then divides it by the mean"""
+    standard_deviation = statistics.stdev(distances)
+    the_mean = find_mean(distances)
+    coe_var = standard_deviation / the_mean
+    rounded_coe = round(coe_var, 1)
+    return rounded_coe
 
 def simulate(walk_lengths, trials, walkers):
     """This function should simuate parameters and print a summary"""
@@ -76,24 +85,34 @@ def simulate(walk_lengths, trials, walkers):
         answer_dict[walker] = {}
         for i in walk_lengths:
             my_walks = walks(i, trials, walker)
+            distance_list = distance(my_walks)
+
             # returns list of distances
             distance(my_walks)
-            #returns the mean of list of distances
-            find_mean(distance(my_walks))
-            #returns the max
-            find_max(distance(my_walks))
-            #returns the min
-            find_min(distance(my_walks))
-            #return the CV
-            
-            answer_dict[walker][i] = my_walks
-            print(my_walks)
 
-    print(answer_dict)
+            #returns the mean of list of distances
+            mean = find_mean(distance_list)
+
+            #returns the max
+            maximum = find_max(distance_list)
+
+            #returns the min
+            minimum = find_min(distance_list)
+
+            #return the CV
+            coefficent = find_coeffiecent_variance(distance_list)
+
+            answer_dict[walker][i] = my_walks
+            print(f"{walker} random walk of {i} steps")
+            print(f"Mean = {mean} CV = {coefficent}")
+            print(f"Max = {maximum} Min = {minimum}")
+    return answer_dict
 
 def plot():
     """this function creates a visual of the simulate info"""
-    pass
+    turt = turtle.Turtle()
+    turtle.screensize(300, 400)
+    
     #simulate()
 
 def main():
