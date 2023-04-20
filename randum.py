@@ -103,24 +103,59 @@ def simulate(walk_lengths, trials, walkers):
             coefficent = find_coeffiecent_variance(distance_list)
 
             answer_dict[walker][i] = my_walks
-            print(f"{walker} random walk of {i} steps")
-            print(f"Mean = {mean} CV = {coefficent}")
-            print(f"Max = {maximum} Min = {minimum}")
+            #print(f"{walker} random walk of {i} steps")
+            #print(f"Mean = {mean} CV = {coefficent}")
+            #print(f"Max = {maximum} Min = {minimum}")
     return answer_dict
 
 def plot():
     """this function creates a visual of the simulate info"""
-    turt = turtle.Turtle()
-    turtle.screensize(300, 400)
-    
-    #simulate()
+    trtl = turtle.Turtle()
+
+    screen_size = turtle.Screen()
+
+    trtl.speed(3)
+    screen_size.setup(300, 400)
+
+    plot_data = simulate([100], 50, 'all') 
+    for walker in plot_data:
+        if walker == "Pa":
+            trtl.shape("circle")
+            trtl.color("black")
+            for index in plot_data[walker].items():
+                for x_coord, y_coord in index[1]:
+                    scaled_coords = (x_coord * 5, y_coord * 5)
+                    trtl.penup()
+                    trtl.setposition(scaled_coords)
+                    trtl.pendown()
+                    trtl.stamp()
+
+        elif walker == "Mi-Ma":
+            trtl.shape("square")
+            trtl.color("green")
+            for index in plot_data[walker].items():
+                for x_coord, y_coord in index[1]:
+                    scaled_coords = (x_coord * 5, y_coord * 5)
+                    trtl.penup()
+                    trtl.setposition(scaled_coords)
+                    trtl.pendown()
+                    trtl.stamp()
+
+        elif walker == "Reg":
+            trtl.shape("triangle")
+            trtl.color("red")
+            for index in plot_data[walker].items():
+                for x_coord, y_coord in index[1]:
+                    scaled_coords = (x_coord * 5, y_coord * 5)
+                    trtl.penup()
+                    trtl.setposition(scaled_coords)
+                    trtl.pendown()
+                    trtl.stamp()
+            
 
 def main():
-    #simulate()
-    #print(walks(100, 50, "Pa"))
-    simulate([10, 15], 3, "all")
-
-
-
+    """this is purely just for testing my data"""
+    plot()
+    turtle.mainloop()
 if __name__ == "__main__":
     main()
