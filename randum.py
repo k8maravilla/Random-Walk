@@ -1,8 +1,7 @@
 import turtle
 import statistics
 import random
-
-t = turtle.Turtle()
+import math
 
 def pa():
     '''randomly chooses which direction pa goes'''
@@ -36,6 +35,13 @@ def walks(walk_lengths, trials, walkers):
     """determines the large amount of trials that are being passed in to simulate"""
     return [my_trials(walk_lengths, walkers) for _ in range(trials)]
 
+def distance(end_points):
+    """converts walk points to distance length"""
+    for x, y in end_points:
+        total = (x **2 + y ** 2)
+        my_distance = math.sqrt(total)
+        print(my_distance)
+
 def simulate(walk_lengths, trials, walkers):
     """This function should simuate parameters and print a summary"""
     all_walkers = []
@@ -45,17 +51,17 @@ def simulate(walk_lengths, trials, walkers):
         all_walkers.append(walkers)
 
     answer_dict = {}
-
+    
     for walker in all_walkers:
         answer_dict[walker] = {}
         for i in walk_lengths:
             my_walks = walks(i, trials, walker)
+            distance(my_walks)
             answer_dict[walker][i] = my_walks
-    print(answer_dict)
-    
-    
+            print(my_walks)
 
-        
+    print(answer_dict)
+
 def plot():
     """this function creates a visual of the simulate info"""
     pass
@@ -64,7 +70,8 @@ def plot():
 def main():
     #simulate()
     #print(walks(100, 50, "Pa"))
-    simulate([10, 15], 5, "all")
+    simulate([10, 15], 3, "all")
+
 
 
 if __name__ == "__main__":
