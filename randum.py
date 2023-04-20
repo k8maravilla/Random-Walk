@@ -37,10 +37,18 @@ def walks(walk_lengths, trials, walkers):
 
 def distance(end_points):
     """converts walk points to distance length"""
+    distance_list = []
     for x, y in end_points:
         total = (x **2 + y ** 2)
         my_distance = math.sqrt(total)
-        print(my_distance)
+        distance_list.append(my_distance)
+    #returns a list of floats
+    return distance_list
+
+def find_mean(distances):
+    """takes a list of distances, adds them all up, divides that number by the length to give the mean"""
+    distance_mean = statistics.mean(distances)
+    print(round(distance_mean, 1))
 
 def simulate(walk_lengths, trials, walkers):
     """This function should simuate parameters and print a summary"""
@@ -57,6 +65,7 @@ def simulate(walk_lengths, trials, walkers):
         for i in walk_lengths:
             my_walks = walks(i, trials, walker)
             distance(my_walks)
+            find_mean(distance(my_walks))
             answer_dict[walker][i] = my_walks
             print(my_walks)
 
