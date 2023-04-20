@@ -1,3 +1,14 @@
+'''
+Project Name: Random Walk
+Author: Kaleb Maravilla
+Due Date: 04/21/2023
+Course: CS1400-002
+
+Put your description here, lessons learned here, and any other information someone using your
+program would need to know to make it run.
+
+I learned that nested foor loops can be very helpful. always choose your data structure and stick with it for the whole project.
+'''
 import turtle
 import statistics
 import random
@@ -103,9 +114,9 @@ def simulate(walk_lengths, trials, walkers):
             coefficent = find_coeffiecent_variance(distance_list)
 
             answer_dict[walker][i] = my_walks
-            #print(f"{walker} random walk of {i} steps")
-            #print(f"Mean = {mean} CV = {coefficent}")
-            #print(f"Max = {maximum} Min = {minimum}")
+            print(f"{walker} random walk of {i} steps")
+            print(f"Mean = {mean} CV = {coefficent}")
+            print(f"Max = {maximum} Min = {minimum}")
     return answer_dict
 
 def plot():
@@ -122,6 +133,7 @@ def plot():
         if walker == "Pa":
             trtl.shape("circle")
             trtl.color("black")
+            trtl.shapesize(.5, .5, .5)
             for index in plot_data[walker].items():
                 for x_coord, y_coord in index[1]:
                     scaled_coords = (x_coord * 5, y_coord * 5)
@@ -133,6 +145,7 @@ def plot():
         elif walker == "Mi-Ma":
             trtl.shape("square")
             trtl.color("green")
+            trtl.shapesize(.5, .5, .5)
             for index in plot_data[walker].items():
                 for x_coord, y_coord in index[1]:
                     scaled_coords = (x_coord * 5, y_coord * 5)
@@ -144,6 +157,7 @@ def plot():
         elif walker == "Reg":
             trtl.shape("triangle")
             trtl.color("red")
+            trtl.shapesize(.5, .5, .5)
             for index in plot_data[walker].items():
                 for x_coord, y_coord in index[1]:
                     scaled_coords = (x_coord * 5, y_coord * 5)
@@ -151,7 +165,7 @@ def plot():
                     trtl.setposition(scaled_coords)
                     trtl.pendown()
                     trtl.stamp()
-            
+    save_to_image() 
 
 def main():
     """this is purely just for testing my data"""
