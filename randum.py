@@ -48,7 +48,19 @@ def distance(end_points):
 def find_mean(distances):
     """takes a list of distances, adds them all up, divides that number by the length to give the mean"""
     distance_mean = statistics.mean(distances)
-    print(round(distance_mean, 1))
+    final_answer = round(distance_mean, 1)
+    return final_answer
+
+def find_max(distances):
+    """finds the maximum distance in the list of distances"""
+    max_distance = max(distances)
+    rounded_max = round(max_distance, 1)
+    return rounded_max
+
+def find_min(distances):
+    """finds the minimum distance in the list of distances"""
+    min_distance = min(distances)
+    print(round(min_distance, 1))
 
 def simulate(walk_lengths, trials, walkers):
     """This function should simuate parameters and print a summary"""
@@ -64,8 +76,16 @@ def simulate(walk_lengths, trials, walkers):
         answer_dict[walker] = {}
         for i in walk_lengths:
             my_walks = walks(i, trials, walker)
+            # returns list of distances
             distance(my_walks)
+            #returns the mean of list of distances
             find_mean(distance(my_walks))
+            #returns the max
+            find_max(distance(my_walks))
+            #returns the min
+            find_min(distance(my_walks))
+            #return the CV
+            
             answer_dict[walker][i] = my_walks
             print(my_walks)
 
